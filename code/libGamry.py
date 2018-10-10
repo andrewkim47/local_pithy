@@ -1,0 +1,237 @@
+from pithy import *
+import pandas as pd
+import os
+from StringIO import StringIO
+
+def readGamry(file):
+    fo = open(file,'r')
+    pre = fo.read()
+    dat = pre.split('CURVE')[-1].split('\n')
+    
+    count = len(dat)
+    header = dat[1].lstrip()
+    
+    sio = StringIO()
+    sio.write(header)
+    
+    for i in range(3,count):
+        sio.write(dat[i].lstrip())
+    sio.seek(0)
+    ivdata = pd.read_csv(sio,sep='\t')
+    sio.close()
+    return ivdata
+
+
+if __name__ == "__main__":
+    fdir = '/Users/andrewkim/Documents/TXM_inSitu/20180208_3C_210/Gamry/'
+    # fs = sorted(os.listdir(fdir))
+    
+    fs = [
+        '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_Chg_#1_#1.DTA',
+        '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_Chg_#1_#2.DTA',
+        '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_Chg_#1_#3.DTA',
+        '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_Chg_#1_#4.DTA',
+        '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_Chg_#2_#1.DTA',
+        '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_Chg_#2_#2.DTA',
+        '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_Chg_#2_#3.DTA',
+        '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_Chg_#2_#4.DTA',
+        '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_Chg_#3_#1.DTA',
+        '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_Chg_#3_#2.DTA',
+        '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_Chg_#3_#3.DTA',
+        '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_Chg_#3_#4.DTA',
+        '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_Chg_#4_#1.DTA',
+        '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_Chg_#4_#2.DTA',
+        '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_Chg_#4_#3.DTA',
+        '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_Chg_#4_#4.DTA',
+        '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_Chg_#5_#1.DTA',
+        '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_Chg_#5_#2.DTA',
+        '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_Chg_#5_#3.DTA',
+        '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_Chg_#5_#4.DTA',
+        '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_Chg_#6_#1.DTA',
+        '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_Chg_#6_#2.DTA',
+        '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_Chg_#6_#3.DTA',
+        '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_Chg_#6_#4.DTA',
+        '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_Chg_#7_#1.DTA',
+        '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_Chg_#7_#2.DTA',
+        '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_Chg_#7_#3.DTA',
+        '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_Chg_#7_#4.DTA',
+        '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_Chg_#8_#1.DTA',
+        '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_Chg_#8_#2.DTA',
+        '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_Chg_#8_#3.DTA',
+        '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_Chg_#8_#4.DTA',
+        '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_Chg_#9_#1.DTA',
+        '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_Chg_#9_#2.DTA',
+        '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_Chg_#9_#3.DTA',
+        '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_Chg_#9_#4.DTA',
+        '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_Chg_#10_#1.DTA',
+        '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_Chg_#10_#2.DTA',
+        '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_Chg_#10_#3.DTA',
+        '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_Chg_#10_#4.DTA',
+        '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_Dchg_#1_#1.DTA',
+        '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_Dchg_#1_#2.DTA',
+        '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_Dchg_#1_#3.DTA',
+        '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_Dchg_#1_#4.DTA',
+        '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_Dchg_#2_#1.DTA',
+        '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_Dchg_#2_#2.DTA',
+        '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_Dchg_#2_#3.DTA',
+        '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_Dchg_#2_#4.DTA',
+        '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_Dchg_#3_#1.DTA',
+        '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_Dchg_#3_#2.DTA',
+        '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_Dchg_#3_#3.DTA',
+        '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_Dchg_#3_#4.DTA',
+        '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_Dchg_#4_#1.DTA',
+        '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_Dchg_#4_#2.DTA',
+        '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_Dchg_#4_#3.DTA',
+        '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_Dchg_#4_#4.DTA',
+        '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_Dchg_#5_#1.DTA',
+        '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_Dchg_#5_#2.DTA',
+        '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_Dchg_#5_#3.DTA',
+        '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_Dchg_#5_#4.DTA',
+        '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_Dchg_#6_#1.DTA',
+        '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_Dchg_#6_#2.DTA',
+        '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_Dchg_#6_#3.DTA',
+        '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_Dchg_#6_#4.DTA',
+        '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_Dchg_#7_#1.DTA',
+        '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_Dchg_#7_#2.DTA',
+        '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_Dchg_#7_#3.DTA',
+        '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_Dchg_#7_#4.DTA',
+        '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_Dchg_#8_#1.DTA',
+        '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_Dchg_#8_#2.DTA',
+        '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_Dchg_#8_#3.DTA',
+        '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_Dchg_#8_#4.DTA',
+        '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_Dchg_#9_#1.DTA',
+        '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_Dchg_#9_#2.DTA',
+        '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_Dchg_#9_#3.DTA',
+        '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_Dchg_#9_#4.DTA',
+        '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_Dchg_#10_#1.DTA',
+        '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_Dchg_#10_#2.DTA',
+        '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_Dchg_#10_#3.DTA',
+        '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_Dchg_#10_#4.DTA',
+        # '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_EIS_0.DTA',
+        # '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_EIS_BOC_#10_#1.DTA',
+        # '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_EIS_BOC_#1_#1.DTA',
+        # '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_EIS_BOC_#2_#1.DTA',
+        # '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_EIS_BOC_#3_#1.DTA',
+        # '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_EIS_BOC_#4_#1.DTA',
+        # '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_EIS_BOC_#5_#1.DTA',
+        # '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_EIS_BOC_#6_#1.DTA',
+        # '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_EIS_BOC_#7_#1.DTA',
+        # '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_EIS_BOC_#8_#1.DTA',
+        # '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_EIS_BOC_#9_#1.DTA',
+        # '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_EIS_TOC_#10_#1.DTA',
+        # '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_EIS_TOC_#1_#1.DTA',
+        # '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_EIS_TOC_#2_#1.DTA',
+        # '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_EIS_TOC_#3_#1.DTA',
+        # '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_EIS_TOC_#4_#1.DTA',
+        # '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_EIS_TOC_#5_#1.DTA',
+        # '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_EIS_TOC_#6_#1.DTA',
+        # '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_EIS_TOC_#7_#1.DTA',
+        # '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_EIS_TOC_#8_#1.DTA',
+        # '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_EIS_TOC_#9_#1.DTA',
+        # '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_OCV1_#10_#1.DTA',
+        # '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_OCV1_#10_#2.DTA',
+        # '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_OCV1_#10_#3.DTA',
+        # '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_OCV1_#10_#4.DTA',
+        # '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_OCV1_#1_#1.DTA',
+        # '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_OCV1_#1_#2.DTA',
+        # '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_OCV1_#1_#3.DTA',
+        # '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_OCV1_#1_#4.DTA',
+        # '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_OCV1_#2_#1.DTA',
+        # '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_OCV1_#2_#2.DTA',
+        # '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_OCV1_#2_#3.DTA',
+        # '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_OCV1_#2_#4.DTA',
+        # '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_OCV1_#3_#1.DTA',
+        # '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_OCV1_#3_#2.DTA',
+        # '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_OCV1_#3_#3.DTA',
+        # '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_OCV1_#3_#4.DTA',
+        # '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_OCV1_#4_#1.DTA',
+        # '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_OCV1_#4_#2.DTA',
+        # '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_OCV1_#4_#3.DTA',
+        # '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_OCV1_#4_#4.DTA',
+        # '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_OCV1_#5_#1.DTA',
+        # '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_OCV1_#5_#2.DTA',
+        # '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_OCV1_#5_#3.DTA',
+        # '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_OCV1_#5_#4.DTA',
+        # '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_OCV1_#6_#1.DTA',
+        # '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_OCV1_#6_#2.DTA',
+        # '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_OCV1_#6_#3.DTA',
+        # '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_OCV1_#6_#4.DTA',
+        # '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_OCV1_#7_#1.DTA',
+        # '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_OCV1_#7_#2.DTA',
+        # '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_OCV1_#7_#3.DTA',
+        # '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_OCV1_#7_#4.DTA',
+        # '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_OCV1_#8_#1.DTA',
+        # '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_OCV1_#8_#2.DTA',
+        # '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_OCV1_#8_#3.DTA',
+        # '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_OCV1_#8_#4.DTA',
+        # '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_OCV1_#9_#1.DTA',
+        # '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_OCV1_#9_#2.DTA',
+        # '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_OCV1_#9_#3.DTA',
+        # '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_OCV1_#9_#4.DTA',
+        # '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_OCV2_#10_#1.DTA',
+        # '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_OCV2_#10_#2.DTA',
+        # '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_OCV2_#10_#3.DTA',
+        # '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_OCV2_#10_#4.DTA',
+        # '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_OCV2_#1_#1.DTA',
+        # '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_OCV2_#1_#2.DTA',
+        # '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_OCV2_#1_#3.DTA',
+        # '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_OCV2_#1_#4.DTA',
+        # '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_OCV2_#2_#1.DTA',
+        # '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_OCV2_#2_#2.DTA',
+        # '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_OCV2_#2_#3.DTA',
+        # '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_OCV2_#2_#4.DTA',
+        # '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_OCV2_#3_#1.DTA',
+        # '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_OCV2_#3_#2.DTA',
+        # '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_OCV2_#3_#3.DTA',
+        # '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_OCV2_#3_#4.DTA',
+        # '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_OCV2_#4_#1.DTA',
+        # '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_OCV2_#4_#2.DTA',
+        # '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_OCV2_#4_#3.DTA',
+        # '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_OCV2_#4_#4.DTA',
+        # '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_OCV2_#5_#1.DTA',
+        # '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_OCV2_#5_#2.DTA',
+        # '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_OCV2_#5_#3.DTA',
+        # '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_OCV2_#5_#4.DTA',
+        # '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_OCV2_#6_#1.DTA',
+        # '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_OCV2_#6_#2.DTA',
+        # '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_OCV2_#6_#3.DTA',
+        # '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_OCV2_#6_#4.DTA',
+        # '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_OCV2_#7_#1.DTA',
+        # '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_OCV2_#7_#2.DTA',
+        # '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_OCV2_#7_#3.DTA',
+        # '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_OCV2_#7_#4.DTA',
+        # '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_OCV2_#8_#1.DTA',
+        # '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_OCV2_#8_#2.DTA',
+        # '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_OCV2_#8_#3.DTA',
+        # '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_OCV2_#8_#4.DTA',
+        # '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_OCV2_#9_#1.DTA',
+        # '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_OCV2_#9_#2.DTA',
+        # '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_OCV2_#9_#3.DTA',
+        # '20180208_AK_JHP_LCO_210_TXM_3C_4p5V_OCV2_#9_#4.DTA'
+    ]
+    
+    
+    for i in range(40):
+        ivdata = readGamry(fdir+fs[i])
+        subplot(211)
+        plot(ivdata['T'],ivdata['Vf'])#,color=col)
+        # xlim(0,200)
+        subplot(212)
+        plot(ivdata['T'],ivdata['Im'])#,color=col)
+        # xlim(0,200)
+    showme()
+    clf()
+ 
+    
+    for i in range(40,80):
+        ivdata = readGamry(fdir+fs[i])
+        subplot(211)
+        plot(ivdata['T'],ivdata['Vf'])#,color=col)
+        # xlim(0,200)
+        subplot(212)
+        plot(ivdata['T'],ivdata['Im'])#,color=col)
+        # xlim(0,200)
+    showme()
+    clf()
+ 
+    
