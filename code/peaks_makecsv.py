@@ -44,10 +44,6 @@ kees = [
     'EA_D_RT',
     'EA_D_WT',
 ]
-# kees = [
-#     'FU_D_RT',
-#     'ER_D_RT',
-# ]
 
 d = dict()
 ys = dict()
@@ -70,6 +66,7 @@ for key in kees:
     # df[key] = 
     for n in range(numband):
         # y = array(datas[key]['zband'][n])
+        ynorm = array(datas[key]['zband'][n])
         y = array(datas[key]['Zband'][n])
         ys[key][n] = y
         idxs = peakutils.indexes(y,thres=.9,min_dist=25)
@@ -79,6 +76,7 @@ for key in kees:
         xi = iidxs[0]
         yi = y[int(round(xi))]
         wid = FWHM(x,y)/2.
+        
         if len(idxs)>1: 
             print key,n,'more than 1 peak'
             print idxs
@@ -88,8 +86,10 @@ for key in kees:
         # d[key]['label'] = key
         d[key]['px'+str(n)] = xi
         d[key]['py'+str(n)] = yi
-        d[key]['pw'+str(n)] = wid
-        
+        d[key]['pw'+str(n)] = wid 
+        d[key]['me'+str(n)] = sum(multiply(x,ynorm)) #weighted mean pixel
+    
+        # print d[key]['me'+str(n)]
         plot(x,y)
         plot(idxs,y[idxs],'ro')
     showme()
